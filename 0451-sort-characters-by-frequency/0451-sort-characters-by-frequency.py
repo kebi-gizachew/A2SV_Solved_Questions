@@ -5,8 +5,8 @@ class Solution:
         for i , j in c.items():
             arr.append([i , j])
         arr.sort(key = lambda x : x[1])
-        t = ""
+        t = []
         for n, m in arr[::-1]:
-            t += n * m
-        return t
+            t.append(n * m)
+        return "".join(t)
         
