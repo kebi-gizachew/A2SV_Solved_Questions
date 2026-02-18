@@ -1,13 +1,23 @@
 class Solution:
     def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
         for i in range(len(heights)):
-            lit = i
-            for j in range(i + 1, len(heights)):
-                if heights[j] > heights[lit]:
-                    lit = j
-            heights[i] , heights[lit] = heights[lit] ,  heights[i]
-            names[i] ,  names[lit]= names[lit] , names[i]
+            temp = heights[i]
+            k = i - 1
+            while k >= 0 and  temp > heights[k]:
+                heights[k] , heights[k + 1] = heights[k + 1], heights[k]
+                names[k] , names[k+1] = names[k+1] ,  names[k]
+                k -= 1
         return names
+            
+
+        # for i in range(len(heights)):
+        #     lit = i
+        #     for j in range(i + 1, len(heights)):
+        #         if heights[j] > heights[lit]:
+        #             lit = j
+        #     heights[i] , heights[lit] = heights[lit] ,  heights[i]
+        #     names[i] ,  names[lit]= names[lit] , names[i]
+        # return names
 
         # d = defaultdict(str)
         # l =0
