@@ -12,12 +12,10 @@ class Solution:
                 i += 1
                 j -= 1
             if flag:
-                arr.sort(reverse=True)
-                finale.extend(arr)
-                flag = False
-            else:
-                finale.extend(arr)
-                flag = True
+                arr.reverse()
+            finale.extend(arr)
+            flag = not flag
+        print(flag)
         for r in range(1 , row):
             i = r
             j = col - 1
@@ -27,12 +25,9 @@ class Solution:
                 j -= 1
                 i += 1
             if flag:
-                arr.sort(reverse=True)
-                finale.extend(arr)
-                flag = False
-            else:
-                finale.extend(arr)
-                flag = True
+                arr.reverse()
+            finale.extend(arr)
+            flag = not flag
         return finale
 
 
