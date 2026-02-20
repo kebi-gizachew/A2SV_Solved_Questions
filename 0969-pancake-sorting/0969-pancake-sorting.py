@@ -1,9 +1,5 @@
-class Solution(object):
-    def pancakeSort(self, arr):
-        """
-        :type arr: List[int]
-        :rtype: List[int]
-        """
+class Solution:
+    def pancakeSort(self, arr: List[int]) -> List[int]:
         n=[]
         for i in range(len(arr),1,-1):
             m=arr.index(i)
