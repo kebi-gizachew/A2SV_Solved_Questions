@@ -1,10 +1,5 @@
-class Solution(object):
-    def numRescueBoats(self, people, limit):
-        """
-        :type people: List[int]
-        :type limit: int
-        :rtype: int
-        """
+class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
         i,j=0,len(people)-1
         k=0
         people.sort()
