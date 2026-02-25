@@ -6,7 +6,9 @@ class Solution:
         i = 0
         while r> i:
             t = i * i + r* r
-            if  t== c:
+            y = 2 * i* i
+            x =2*r*r
+            if  t== c or y ==c or x == c:
                 return True
             elif t > c:
                 r -= 1
