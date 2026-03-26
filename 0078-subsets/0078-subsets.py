@@ -1,9 +1,9 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        res = set()
+        res = []
         path = []
         def trial(num):
-            res.add(tuple(path[:]))
+            res.append(path[:])
             if len(path) == len(nums):
                 return
             for i in range(len(num)):
@@ -11,10 +11,8 @@ class Solution:
                 trial(num[i + 1:])
                 path.pop()
         trial(nums)
-        finale = []
-        for i in res:
-            finale.append(list(i))
-        return finale
+        
+        return res
 
 
 
