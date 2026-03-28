@@ -17,6 +17,10 @@ class Solution:
                 if part.startswith("0") and len(part) > 1:
                     break
                 path.append(nums[:i + 1])
+                if len(path) >= 3:
+                    if int(path[-1]) != int(path[-2]) + int(path[-3]):
+                        path.pop()
+                        continue
                 if trial(nums[i+ 1:]):
                     return True
                 path.pop()
