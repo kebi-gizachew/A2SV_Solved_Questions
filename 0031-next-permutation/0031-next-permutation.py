@@ -8,7 +8,7 @@ class Solution:
             i -= 1
         if i >= 0:
             j = len(nums) -1
-            while nums[i] > nums[j]:
+            while nums[i] >= nums[j]:
                 j -= 1
             nums[j] , nums[i]= nums[i] , nums[j]
         nums[i +1:] = reversed(nums[i +1:])
