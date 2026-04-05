@@ -1,19 +1,20 @@
 class Solution:
     def hIndex(self, citations: List[int]) -> int:
-        left , right = 0 , len(citations)
-        ans = -1
-        def checking_mid(mid):
-            if mid < len(citations):
-                return len(citations) - mid + 1 >= citations[mid]
-            return False
+        left , right = 0 , len(citations) - 1
+        ans = 0
         while right >= left:
-            mid = left +(right - left)// 2
-            if checking_mid(mid):
-                ans = citations[mid]
-                left = mid + 1
-            else:
+            mid = left +(right - left) // 2
+            if len(citations) - mid <= citations[mid]:
+                ans = len(citations) - mid
                 right = mid - 1
+            else:
+                left = mid +1
         return ans
+
+
+
+
+
 
 
 
