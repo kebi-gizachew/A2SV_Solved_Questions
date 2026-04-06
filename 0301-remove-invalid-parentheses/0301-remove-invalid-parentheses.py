@@ -45,46 +45,6 @@ class Solution:
 
 
 
-
-        # res = set()
-        # l = r = 0
-        # for c in s:
-        #     if c == '(':
-        #         l += 1
-        #     elif c == ')':
-        #         if l > 0:
-        #             l -= 1
-        #         else:
-        #             r += 1
-        # def backtrack(index, left_count, right_count, l_rem, r_rem, path):
-        #     if index == len(s):
-        #         if l_rem == 0 and r_rem == 0:
-        #             res.add(path)
-        #         return
-            
-        #     char = s[index]            
-        #     if char == '(' and l_rem > 0:
-        #         backtrack(index + 1, left_count, right_count, l_rem - 1, r_rem, path)
-        #     elif char == ')' and r_rem > 0:
-        #         backtrack(index + 1, left_count, right_count, l_rem, r_rem - 1, path)
-            
-        #     if char not in "()":
-        #         backtrack(index + 1, left_count, right_count, l_rem, r_rem, path + char)
-        #     elif char == '(':
-        #         backtrack(index + 1, left_count + 1, right_count, l_rem, r_rem, path + char)
-        #     elif char == ')' and right_count < left_count:
-        #         backtrack(index + 1, left_count, right_count + 1, l_rem, r_rem, path + char)
-
-        # backtrack(0, 0, 0, l, r, "")
-        
-        # return list(res)
-
-
-
-
-
-
-
         # path = []
         # res = []
         # def trial(st):
