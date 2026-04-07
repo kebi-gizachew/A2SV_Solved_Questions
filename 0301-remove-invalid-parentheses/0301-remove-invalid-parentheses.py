@@ -44,27 +44,3 @@ class Solution:
 
 
 
-
-        # path = []
-        # res = []
-        # def trial(st):
-        #     if not st:
-        #         stack = []
-        #         for t in path:
-        #             if t == "(":
-        #                 stack.append("(")
-        #             elif t == ")":
-        #                 if not stack:
-        #                     return
-        #                 else:
-        #                     stack.pop()
-        #         if not stack:
-        #             res.append("".join(path[:]))
-        #         return
-        #     for i in range(len(st)):
-        #         path.append(st[i])
-        #         trial(st[i + 1:])
-        #         path.pop()
-        # trial(s)
-        # return res
-        
