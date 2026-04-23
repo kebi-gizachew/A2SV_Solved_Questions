@@ -11,11 +11,11 @@ class Solution:
             for x , y in directions:
                 ifPass(i + x , j + y , visit, heights[i][j])
         for j in range(len(heights[0])):
-            ifPass(0 , j , pacific , heights[0][j])
-            ifPass(len(heights)- 1 , j , atlantic , heights[len(heights) - 1][j])
+            ifPass(0 , j , pacific , -1)
+            ifPass(len(heights)- 1 , j , atlantic ,-1)
         for i in range(len(heights)):
-            ifPass(i , 0 , pacific , heights[i][0])
-            ifPass(i , len(heights) - 1 , atlantic , heights[i][len(heights) - 1])
+            ifPass(i , 0 , pacific , -1)
+            ifPass(i , len(heights[0]) - 1 , atlantic , -1)
         for x , y in pacific:
             if (x , y) in atlantic:
                 res.append([x , y])
