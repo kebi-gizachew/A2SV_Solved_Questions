@@ -2,9 +2,12 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         graph = defaultdict(list)
         gray = set()
+        black = set()
         for x , y in prerequisites:
             graph[x].append(y)
         def cycle(node):
+            if node in black:
+                return True
             if node in gray:
                 return False
             gray.add(node)
@@ -12,8 +15,25 @@ class Solution:
                 if not cycle(t):
                     return False
             gray.remove(node)
+            black.add(node)
             return True
-        return cycle(0)
+        for y in range(numCourses):
+            if not cycle(y):
+                return False
+        return True 
+
+
+
+
+            
+
+
+
+
+
+
+        
+
 
 
 
@@ -45,10 +65,10 @@ class Solution:
         #     visiting.remove(cor)
         #     visited.add(cor)
         #     return True
-        # for y in range(numCourses):
-        #     if not trial(y):
-        #         return False
-        # return True 
+        for y in range(numCourses):
+            if not trial(y):
+                return False
+        return True 
 
 
 
