@@ -5,25 +5,58 @@ class Solution(object):
         :rtype: int
         """
         count = 0
-        directions = [(-1 , 0) , (1 , 0) , (0, 1) , (0 , -1)]
-        def removeLand(x , y):
-            if x < 0 or y < 0 or x >= len(grid) or y >= len(grid[0]) or grid[x][y] == "0":
-                return
-            grid[x][y] = "0"
-            for i, j in directions:
-                removeLand(x + i, y+j)
-
-        queue = deque()
-        for x in range(len(grid)):
-            for y in range(len(grid[0])):
-                if grid[x][y] == "1":
-                    queue.append((x , y))
-        while queue:
-            x , y = queue.popleft()
-            if grid[x][y] == "1":
-                count += 1
-                removeLand(x , y)
+        directions = [(0, -1), (0, 1), (1, 0) , (-1 , 0)]
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == "1":
+                    queue = deque()
+                    queue.append((i , j))
+                    count += 1
+                    grid[i][j] = "0"
+                    while queue:
+                        pri , sub = queue.popleft()
+                        for x , y in directions:
+                            if 0 <= x + pri < len(grid) and 0 <= y + sub < len(grid[0]) and grid[x +pri][y + sub] == "1":
+                                queue.append((x + pri, y + sub))
+                                grid[x + pri][y + sub] = "0"
         return count
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # count = 0
+        # directions = [(-1 , 0) , (1 , 0) , (0, 1) , (0 , -1)]
+        # def removeLand(x , y):
+        #     if x < 0 or y < 0 or x >= len(grid) or y >= len(grid[0]) or grid[x][y] == "0":
+        #         return
+        #     grid[x][y] = "0"
+        #     for i, j in directions:
+        #         removeLand(x + i, y+j)
+
+        # queue = deque()
+        # for x in range(len(grid)):
+        #     for y in range(len(grid[0])):
+        #         if grid[x][y] == "1":
+        #             queue.append((x , y))
+        # while queue:
+        #     x , y = queue.popleft()
+        #     if grid[x][y] == "1":
+        #         count += 1
+        #         removeLand(x , y)
+        # return count
 
 
 
