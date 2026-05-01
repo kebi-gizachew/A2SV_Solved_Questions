@@ -4,25 +4,62 @@ class Solution(object):
         :type grid: List[List[str]]
         :rtype: int
         """
-        def trial(i , j):
-            if i <0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == "0":
-                return
-            grid[i][j] = "0"
-            queue = deque()
-            queue.append((i , j))
-            directions = ((-1, 0), (1 , 0) , (0, 1) , (0, -1))
-            while queue:
-                temp = queue.popleft()
-                for x , y in directions:
-                    trial(i +x , y + j)
-                    
         count = 0
-        for i in range(len(grid)):
-            for j in range(len(grid[0])):
-                if grid[i][j] == "1":
-                    trial(i , j)
-                    count += 1
+        directions = [(-1 , 0) , (1 , 0) , (0, 1) , (0 , -1)]
+        def removeLand(x , y):
+            if x < 0 or y < 0 or x >= len(grid) or y >= len(grid[0]) or grid[x][y] == "0":
+                return
+            grid[x][y] = "0"
+            for i, j in directions:
+                removeLand(x + i, y+j)
+
+        queue = deque()
+        for x in range(len(grid)):
+            for y in range(len(grid[0])):
+                if grid[x][y] == "1":
+                    queue.append((x , y))
+        while queue:
+            x , y = queue.popleft()
+            if grid[x][y] == "1":
+                count += 1
+                removeLand(x , y)
         return count
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # def trial(i , j):
+        #     if i <0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == "0":
+        #         return
+        #     grid[i][j] = "0"
+        #     queue = deque()
+        #     queue.append((i , j))
+        #     directions = ((-1, 0), (1 , 0) , (0, 1) , (0, -1))
+        #     while queue:
+        #         temp = queue.popleft()
+        #         for x , y in directions:
+        #             trial(i +x , y + j)
+                    
+        # count = 0
+        # for i in range(len(grid)):
+        #     for j in range(len(grid[0])):
+        #         if grid[i][j] == "1":
+        #             trial(i , j)
+        #             count += 1
+        # return count
 
 
 
