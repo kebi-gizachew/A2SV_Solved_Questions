@@ -4,33 +4,25 @@ class Solution(object):
         :type grid: List[List[str]]
         :rtype: int
         """
-        # visited = set()
-        # for i in range(len(grid)):
-        #     for j in range(len(grid[0])):
-        #         if grid[i][j] == "1":
-        #             visited.append((i, j))
-        def iterateGrid(i , j):
-            if i <0 or j < 0 or i >= len(grid) or j >= len(grid[0]) or grid[i][j] == "0":
+        def trial(i , j):
+            if i <0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == "0":
                 return
-            # visited.remove((i , j))
             grid[i][j] = "0"
-            iterateGrid(i + 1 , j)
-            iterateGrid(i - 1 , j)
-            iterateGrid(i , j + 1)
-            iterateGrid(i , j - 1)
-        # v = list(visited)
+            queue = deque()
+            queue.append((i , j))
+            directions = ((-1, 0), (1 , 0) , (0, 1) , (0, -1))
+            while queue:
+                temp = queue.popleft()
+                for x , y in directions:
+                    trial(i +x , y + j)
+                    
         count = 0
         for i in range(len(grid)):
             for j in range(len(grid[0])):
                 if grid[i][j] == "1":
+                    trial(i , j)
                     count += 1
-                    iterateGrid(i , j)
         return count
-
-
-
-
-
 
 
 
