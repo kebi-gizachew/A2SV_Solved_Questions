@@ -6,21 +6,34 @@
 #         self.right = right
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        if not root:
-            return []
-        queue = deque([root])
-        res = []
-        while queue:
-            arr = []
-            for t in range(len(queue)):
-                temp = queue.popleft()
-                arr.append(temp.val)
-                if temp.left:
-                    queue.append(temp.left)
-                if temp.right:
-                    queue.append(temp.right)
-            res.append(arr)
-        return res
+        res = defaultdict(list)
+        def bfsDepth(root, depth):
+            if not root:
+                return
+            res[depth].append(root.val)
+            bfsDepth(root.left, depth+ 1)
+            bfsDepth(root.right, depth+ 1)
+        result = []
+        bfsDepth(root , 0)
+        for i in range(len(res)):
+            result.append(res[i]) 
+        return result
+
+        # if not root:
+        #     return []
+        # queue = deque([root])
+        # res = []
+        # while queue:
+        #     arr = []
+        #     for t in range(len(queue)):
+        #         temp = queue.popleft()
+        #         arr.append(temp.val)
+        #         if temp.left:
+        #             queue.append(temp.left)
+        #         if temp.right:
+        #             queue.append(temp.right)
+        #     res.append(arr)
+        # return res
 
 
 
