@@ -1,24 +1,58 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        color = [0 for i in range(numCourses)]
-        d= defaultdict(list)
-        for x, y in prerequisites:
+        indegree = [0 for i in range(numCourses)]
+        d = defaultdict(list)
+        for x , y in prerequisites:
             d[y].append(x)
-        def dfs(node):
-            if color[node] == 1:
-                return False
-            if color[node] == 2:
-                return True
-            color[node] = 1
-            for t in d[node]:
-                if not dfs(t):
-                    return False
-            color[node] = 2
-            return True
-        for t in range(numCourses):
-            if color[t] == 0 and not dfs(t):
-                return False
-        return True
+            indegree[x] += 1
+        queue = deque([i for i in range(numCourses) if indegree[i] == 0])
+        res = []
+        while queue:
+            temp = queue.popleft()
+            res.append(temp)
+            for t in d[temp]:
+                indegree[t] -= 1
+                if indegree[t] == 0:
+                    queue.append(t)
+        return len(res) == numCourses 
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # color = [0 for i in range(numCourses)]
+        # d= defaultdict(list)
+        # for x, y in prerequisites:
+        #     d[y].append(x)
+        # def dfs(node):
+        #     if color[node] == 1:
+        #         return False
+        #     if color[node] == 2:
+        #         return True
+        #     color[node] = 1
+        #     for t in d[node]:
+        #         if not dfs(t):
+        #             return False
+        #     color[node] = 2
+        #     return True
+        # for t in range(numCourses):
+        #     if color[t] == 0 and not dfs(t):
+        #         return False
+        # return True
 
 
 
