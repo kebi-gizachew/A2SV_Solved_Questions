@@ -2,7 +2,7 @@ class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
         color = [0 for _ in range(len(graph))]
         d = defaultdict(list)
-        visited = set()
+        # visited = set()
         for i in range(len(graph)):
             for j in graph[i]:
                 d[i].append(j)
@@ -11,14 +11,15 @@ class Solution:
                 return False
             if color[node] == 2 and cur == 1:
                 return False
-            if node in visited or color[node] == cur:
+            # if node in visited or color[node] == cur:
+            if color[node] ==cur:
                 return True
             color[node] = cur
             cur = 2 if cur == 1 else 1
             for t in d[node]:
                 if not dfs(t , cur):
                     return False
-            visited.add(node)
+            # visited.add(node)
             return True
         for i in range(len(graph)):
             if color[i] == 0 and not dfs(i, 1):
