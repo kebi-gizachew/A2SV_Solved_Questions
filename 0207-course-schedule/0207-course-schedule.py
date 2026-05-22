@@ -1,20 +1,109 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        indegree = [0 for i in range(numCourses)]
-        d = defaultdict(list)
+        visited = set()
+        visit = set()
+        storer = defaultdict(list)
         for x , y in prerequisites:
-            d[y].append(x)
-            indegree[x] += 1
-        queue = deque([i for i in range(numCourses) if indegree[i] == 0])
-        res = []
-        while queue:
-            temp = queue.popleft()
-            res.append(temp)
-            for t in d[temp]:
-                indegree[t] -= 1
-                if indegree[t] == 0:
-                    queue.append(t)
-        return len(res) == numCourses 
+            storer[x].append(y)
+        def dfs(val):
+            if val in visit:
+                return True
+            if val in visited:
+                return False
+            visited.add(val)
+            for t in storer[val]:
+                if not dfs(t):
+                    return False
+            visited.remove(val)
+            visit.add(val)
+            return True
+        for t in range(numCourses):
+            if not dfs(t):
+                return False
+        return True
+
+
+
+
+
+
+
+        # storeConnect = defaultdict(list)
+        # indegree = [0] * numCourses
+        # res = []
+        # for x, y in prerequisites:
+        #     storeConnect[y].append(x)
+        #     indegree[x] += 1
+        # queue = deque([i for i in range(numCourses) if indegree[i] == 0])
+        # while queue:
+        #     temp = queue.popleft()
+        #     res.append(temp)
+        #     for t in storeConnect[temp]:
+        #         indegree[t] -= 1
+        #         if indegree[t] == 0:
+        #             queue.append(t)
+        # return len(res) == numCourses
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        # visit = set()
+        # visited = set()
+        # d = defaultdict(list)
+        # for x, y in prerequisites:
+        #     d[y].append(x)
+
+        # def dfs(node):
+        #     if node in visit:
+        #         return False
+        #     if node in visited:
+        #         return True
+        #     visit.add(node)
+        #     for t in d[node]:
+        #         if not dfs(t):
+        #             return False
+        #     visited.add(node)
+        #     visit.remove(node)
+        #     return True
+        # for n in range(numCourses):
+        #     if not dfs(n):
+        #         return False
+        # return True
+
+
+
+
+
+
+
+
+
+
+
+        # indegree = [0 for i in range(numCourses)]
+        # d = defaultdict(list)
+        # for x , y in prerequisites:
+        #     d[y].append(x)
+        #     indegree[x] += 1
+        # queue = deque([i for i in range(numCourses) if indegree[i] == 0])
+        # res = []
+        # while queue:
+        #     temp = queue.popleft()
+        #     res.append(temp)
+        #     for t in d[temp]:
+        #         indegree[t] -= 1
+        #         if indegree[t] == 0:
+        #             queue.append(t)
+        # return len(res) == numCourses 
         
 
 
@@ -232,3 +321,7 @@ class Solution:
 
         
         
+
+# Synced seamlessly with LeetHub Pro
+# Pro features: https://bit.ly/leethubpro | Free version: https://bit.ly/leethubv4
+# Get it here: https://chromewebstore.google.com/detail/leethub-v4/bcilpkkbokcopmabingnndookdogmbna
