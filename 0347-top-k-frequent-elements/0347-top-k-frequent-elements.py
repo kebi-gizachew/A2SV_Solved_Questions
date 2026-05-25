@@ -3,14 +3,10 @@ class Solution:
         count = Counter(nums)
         heap= []
         for x , y in count.items():
-            heap.append([y , x])
-        heapify(heap)
-        while len(heap) > k:
-            heappop(heap)
-        res = []
-        for i , j in heap:
-            res.append(j)
-        return res
+            heappush(heap, (y , x))
+            if len(heap) > k:
+                heappop(heap)
+        return [x for y , x in heap]
 
 
 
