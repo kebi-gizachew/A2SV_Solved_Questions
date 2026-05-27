@@ -1,5 +1,6 @@
 class Solution:
     def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+
         heap = []
         for t in range(len(matrix)):
             heappush(heap, (matrix[t][0], t, 0))
